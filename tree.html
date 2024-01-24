@@ -238,6 +238,11 @@
 			checkboxes: true,
 
         });
+		
+		tree.on('select', function (e, node, id) {
+				var parents = tree.parents(id);
+				console.log(parents.join(' / ') + ' / ' + tree.getDataById(id).text);
+		});
 
 	});
 
