@@ -16,7 +16,11 @@
 </head>
 <body style="padding: 8px;">
 
+        <div class="row">
+            <button id="btnSave" class="btn btn-default">Save Checked Nodes</button>
+        </div>
 <ul id="tree"></ul>
+
 
 
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
@@ -24,7 +28,13 @@
 
 <script>
     $(document).ready(function () {
-			
+		
+                $('#btnSave').on('click', function () {
+				tree.check(tree.getNodeByText('Asia'));
+				
+                });
+
+				
         var tree = $('#tree').tree({
             primaryKey: 'id',
             uiLibrary: 'bootstrap5',
@@ -234,17 +244,15 @@
 					  ]
 				   }
 				],
-            selectionType: 'multiple',
+            selectionType: 'single',
 			checkboxes: true,
-			onlyChildrenCheckbox: true,
-			cascadeSelection: false,
+			onlyChildrenCheckbox: false,
+			cascadeSelection: true,
+			cascadeCheck: true,
 
         });
 		
-		tree.on('select', function (e, node, id) {
-				var parents = tree.parents(id);
-				console.log(parents.join(' / ') + ' / ' + tree.getDataById(id).text);
-		});
+
 
 	});
 
